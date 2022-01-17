@@ -1,0 +1,19 @@
+/target/
+/**/target/*
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/nbproject/
+
+target/*
+*/target/*
+*.DS_Store
+*.prefs
+dmp-bff-server/.classpath
+dmp-bff-distribution/.project
+.project
+*.log
+
