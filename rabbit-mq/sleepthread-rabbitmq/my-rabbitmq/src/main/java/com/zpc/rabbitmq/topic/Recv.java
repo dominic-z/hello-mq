@@ -14,6 +14,10 @@ public class Recv {
 
     public static void main(String[] argv) throws Exception {
 
+        consume();
+    }
+
+    public static void consume() throws Exception {
         // 获取到连接以及mq通道
         Connection connection = ConnectionUtil.getConnection();
         Channel channel = connection.createChannel();

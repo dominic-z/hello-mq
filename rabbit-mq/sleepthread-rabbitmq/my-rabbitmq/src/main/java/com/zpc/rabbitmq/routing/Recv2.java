@@ -14,6 +14,10 @@ public class Recv2 {
 
     public static void main(String[] argv) throws Exception {
 
+        consume();
+    }
+
+    public static void consume() throws Exception {
         // 获取到连接以及mq通道
         Connection connection = ConnectionUtil.getConnection();
         Channel channel = connection.createChannel();
@@ -38,7 +42,7 @@ public class Recv2 {
         while (true) {
             QueueingConsumer.Delivery delivery = consumer.nextDelivery();
             String message = new String(delivery.getBody());
-            System.out.println(" [x] Received '" + message + "'");
+            System.out.println(" [2] Received '" + message + "'");
             Thread.sleep(10);
 
             channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);

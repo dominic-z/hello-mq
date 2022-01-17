@@ -10,15 +10,7 @@ public class Send {
     private final static String QUEUE_NAME = "test_queue_work";
 
     public static void main(String[] argv) throws Exception {
-        Thread producer = new Thread(new Runnable() {
-            public void run() {
-                try {
-                    send();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+
 
         Thread consumer1 = new Thread(new Runnable() {
             public void run() {
@@ -40,9 +32,19 @@ public class Send {
             }
         });
 
-        producer.start();
+        Thread producer = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    send();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         consumer1.start();
         consumer2.start();
+        producer.start();
 
         producer.join();
         consumer1.join();

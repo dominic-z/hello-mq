@@ -10,6 +10,49 @@ public class Send {
     private final static String EXCHANGE_NAME = "test_exchange_fanout";
 
     public static void main(String[] argv) throws Exception {
+
+        Thread consumer1 = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    Recv.consume();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Thread consumer2 = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    Recv2.consume();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        Thread producer = new Thread(new Runnable() {
+            public void run() {
+                try {
+                    send();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        consumer1.start();
+        consumer2.start();
+        Thread.sleep(20);
+        producer.start();
+
+        producer.join();
+        consumer1.join();
+        consumer2.join();
+
+    }
+
+    private static void send() throws Exception {
         // 获取到连接以及mq通道
         Connection connection = ConnectionUtil.getConnection();
         Channel channel = connection.createChannel();
