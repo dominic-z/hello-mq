@@ -1,17 +1,14 @@
-/target/
-/**/target/*
+/**/target
 
 ### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
-/nbproject/
+/**/.idea
+/**/*.iws
+/**/*.iml
+/**/*.ipr
+/**/nbproject/
 
-target/*
-*/target/*
-*.DS_Store
-*.prefs
-.project
-*.log
+/**/*.DS_Store
+/**/*.prefs
+/**/.project
+/**/*.log
 /**/logs
