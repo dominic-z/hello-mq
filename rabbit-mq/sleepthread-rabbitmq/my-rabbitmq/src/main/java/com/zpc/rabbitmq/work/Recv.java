@@ -28,7 +28,7 @@ public class Recv {
         // 定义队列的消费者
         QueueingConsumer consumer = new QueueingConsumer(channel);
         // 监听队列，false表示手动返回完成状态，true表示自动
-        channel.basicConsume(QUEUE_NAME, false, consumer);
+        channel.basicConsume(QUEUE_NAME, true, consumer);
 
         // 获取消息
         while (true) {
@@ -38,7 +38,7 @@ public class Recv {
             //休眠
             Thread.sleep(100);
             // 返回确认状态，注释掉表示使用自动确认模式
-            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+//            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
         }
     }
 }
