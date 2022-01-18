@@ -12,8 +12,6 @@ target/*
 */target/*
 *.DS_Store
 *.prefs
-dmp-bff-server/.classpath
-dmp-bff-distribution/.project
 .project
 *.log
-
+/**/logs

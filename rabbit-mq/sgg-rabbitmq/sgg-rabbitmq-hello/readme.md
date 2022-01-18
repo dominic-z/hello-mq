@@ -30,3 +30,19 @@ multiple – true to acknowledge all messages up to and including the supplied d
 
 deliveryTag代表的是这次生产或者消费的tag，对于每一个新开启的信道，是从1开始的；
 multiple就看注释吧
+
+# Exchanges
+队列有名字，交换机有名字；queue与exchanged的routingKey代表的是关系；producer传入的routingKey代表用于匹配关系的参数；
+
+# 死信队列
+## ttl
+事情流程：
+1. c1创建了两个队列，两个交换机，绑定关系为两两绑定；
+    - (dead_q,dead_e)：称为死信队列与死信交换机
+    - (normal_q,normal_e)：这个normal_q这个队列里的数据，如果超时了，会以`lisi`这个routingkey转发到`dead_e`；
+2. 关闭c1；
+3. 启动Producer，发送的信息里配置超时时间为10s；
+4. 于是超时的数据就会被`normal_q`认定为死信，从而转发到`dead_e`；
+
+## 超长
+就是队列最多持有6条数据，如果来了10条，那么第1~4条会被该队列认定为死信；
